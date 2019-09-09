@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<tr th:each="dinarModel:${dinarModelList}">
+	
+		<td><a th:text="${dinarModel.nomorNota}"></a></td>
+		<td><a th:text="${#calendars.format(dinarModel.tanggalNota, 'dd MMMM yyyy')}"></a></td>
+		<td><a th:text="${dinarModel.vendor}"></a></td>
+		<td align="center"><a th:text="${dinarModel.quantity}"></a></td>
+		<td align="center"><button id="btn-lihat" type="button"
+				class="btn btn-success btn-sm"
+				th:value="${dinarModel.id}">Lihat</button> &nbsp;
+		<button id="btn-ubah" type="button"
+				class="btn btn-warning btn-sm"
+				th:value="${dinarModel.id}">Ubah</button> &nbsp;
+		<button id="btn-hapus" type="button"
+				class="btn btn-danger btn-sm"
+				th:value="${dinarModel.id}">Hapus</button></td>
+	</tr>
+</body>
+
+</html>

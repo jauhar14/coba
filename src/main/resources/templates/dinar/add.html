@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="card">
+	<div class="card-body">		
+		<h3>Masukkan Detail Dinar</h3>
+		<form class="forms-sample" id="form-dinar-tambah" method="post">
+		
+		<div class="form-group">
+				<label>Nomor Nota</label> <input type="text" class="form-control"
+					placeholder="Masukkan Nomor Nota" name="nomorNota">
+			</div>
+			<div class="form-group">
+				<label>Tanggal Nota</label> <input type="date" class="form-control"
+					 name="tanggalNota">
+			</div>
+			<div class="form-group">
+				<label>Vendor</label> <input type="text" class="form-control"
+					placeholder="Masukkan Vendor Dinar" name="vendor">
+			</div>
+			<div class="form-group">
+				<label>Quantity</label> <input type="number" class="form-control"
+					placeholder="Masukkan Jumlah Dinar" name="quantity">
+			</div>
+			<button type="submit" class="btn btn-success mr-2">Submit</button>
+			<button class="btn btn-light" data-dismiss="modal">Cancel</button>
+		</form>
+	</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="card">
+		<div class="card-body">
+			<h1>Data Dinar</h1>
+			
+			<div class = "col-sm-6"><button type="button" class="btn btn-primary btn-fw" id="btn-tambah">Tambah
+				Dinar</button></div>
+			<table class="table table-hover">
+				<tr class="table-success">
+					
+					<th style="text-align:center">Nomor Nota</th>
+					<th style="text-align:center">Tanggal Nota</th>
+					<th style="text-align:center">Vendor</th>
+					<th style="text-align:center">Quantity</th>
+					<th style="text-align:center">Action</th>
+					<!-- <td>Detail</td>
+					<td>Ubah</td>
+					<td>Hapus</td> -->
+				</tr>
+				<tr>
+					
+					<!-- <td>
+						<form th:action=@{/dinar/search/nama} method=post>
+							<div class="input-group">
+								<input type=text class="form-control"
+									placeholder="Masukkan Nama dinar" aria-label="Username"
+									aria-describedby="colored-addon3" name=namadinar><br>
+								<div class="input-group-append bg-primary border-primary">
+									<button class="input-group-text bg-transparent" type=submit>Cari
+									</button>
+								</div>
+							</div>
+						</form>
+					</td> -->
+					
+				</tr>
+				<tbody id="list-dinar">
+				
+					<!-- ambil file dari list.html -->
+					
+				</tbody>
+			</table>
+			<div id="modal-dinar" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<!-- <div class="modal-header">							
+							<h4 class="modal-title">Tambah Dinar</h4>
+						</div> -->
+						<div class="modal-body">
+							<p>Some text in the modal.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+//function dalaam script dipanggil saat html dipanggil
+	refreshDatadinar();
+
+	//function ajax untuk refresh data (panggil list.html)
+	function refreshDatadinar() {
+		$.ajax({
+			url : '/dinar/data',
+			type : 'get',
+			dataType : 'html',		
+			success : function(result) {				
+				$('#list-dinar').html(result);
+			}
+		});
+	}	
+	//function ajax untuk refresh data (panggil list.html)
+
+	//ajax untuk pop-up tambah
+	$('#btn-tambah').click(function() {
+		var id = $(this).val();
+		$.ajax({
+			url : '/dinar/tambah',
+			type : 'get',
+			dataType : 'html',
+			data : {id,id},
+			success : function(result) {
+				$('#modal-dinar').modal('show');
+				$('#modal-dinar').find('.modal-body').html(result);
+			}
+		});
+	});
+	//ajax untuk pop-up tambah
+	
+	//ajax untuk create
+	$('#modal-dinar').on('submit','#form-dinar-tambah',function() {		
+		$.ajax({
+			url : '/dinar/create',
+			type : 'post',			
+			data : $(this).serialize(),
+			success : function(result) {
+				alert('data dinar telah ditambah');
+				$('#modal-dinar').modal('hide');
+				refreshDatadinar();
+			}
+		});
+		return false;
+	});
+	//ajax untuk create
+	
+	//ajax untuk pop-up lihat
+	$('#list-dinar').on('click','#btn-lihat',function() {
+		var id = $(this).val();
+		$.ajax({
+			url : '/dinar/detail',
+			type : 'get',
+			dataType : 'html',
+			data : {id,id},
+			success : function(result) {
+				$('#modal-dinar').modal('show');
+				$('#modal-dinar').find('.modal-body').html(result);
+			}
+		});
+	});
+	//ajax untuk pop-up lihat
+	
+	//ajax untuk pop-up ubah
+	$('#list-dinar').on('click','#btn-ubah',function() {
+		var id = $(this).val();
+		$.ajax({
+			url : '/dinar/ubah',
+			type : 'get',
+			dataType : 'html',
+			data : {id,id},
+			success : function(result) {
+				$('#modal-dinar').modal('show');
+				$('#modal-dinar').find('.modal-body').html(result);
+			}
+		});
+	});
+	//ajax untuk pop-up ubah
+	
+	//ajax untuk edit
+	$('#modal-dinar').on('submit','#form-dinar-ubah',function() {		
+		$.ajax({
+			url : '/dinar/update',
+			type : 'post',			
+			data : $(this).serialize(),
+			success : function(result) {
+				alert('data dinar telah diubah');				
+				$('#modal-dinar').modal('hide');
+				refreshDatadinar();
+			}
+		});
+		return false;
+	});
+	//ajax untuk edit
+	
+	//ajax untuk pop-up hapus
+	$('#list-dinar').on('click','#btn-hapus',function() {	
+		if (confirm("Anda yakin?"))	{
+			var id = $(this).val();
+			$.ajax({
+				url : '/dinar/hapus',
+				type : 'post',
+				dataType: 'html',
+				data : {id,id},			
+				success : function(result) {					
+					refreshDatadinar();
+				}
+			});			
+		}
+		else {
+			return false;
+			}		
+		});		
+		
+	//ajax untuk pop-up hapus	
+</script>
+</html>

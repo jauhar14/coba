@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form class="forms-sample" id='form-dinar-ubah' method="post">
+		<div class="card">
+			<div class="card-body">
+				<h3>Ubah dinar</h3>
+				<div class="form-group">
+					<table>
+					<input class="form-control" type="hidden"
+								name="nomorNotaSb" th:value="${dinarModel.nomorNota}" />
+						<tr>
+							<td>Nomor Nota</td>
+							<td><input class="form-control" type="text"
+								name="nomorNota" th:value="${dinarModel.nomorNota}" /></td>
+						</tr>
+						<tr>
+							<td>Tanggal Nota</td>
+							<td><input class="form-control" type="date"
+								name="tanggalNota" th:value="${#calendars.format(dinarModel.tanggalNota, 'dd MMMM yyyy')}" /></td>
+						</tr>
+						<tr>
+							<td>Vendor</td>
+							<td><input class="form-control" type="text"
+								name="vendor" th:value="${dinarModel.vendor}" /></td>
+						</tr>
+						<tr>
+							<td>Quantity</td>
+							<td><input class="form-control" type="text"
+								name="quantity" th:value="${dinarModel.quantity}" /></td>
+						</tr>
+						<tr>
+							<td><button class="btn btn-warning btn-sm" type="submit">Ubah</button></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

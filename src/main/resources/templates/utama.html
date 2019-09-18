@@ -36,7 +36,7 @@
 				<ul class="navbar-nav ml-auto">
 					<li
 						class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
-						<a id="UserDropdown" aria-expanded="false">Selamat Datang </a>
+						<a id="UserDropdown" aria-expanded="false">Selamat Datang, </a><a th:href="@{/logout}">Logout</a>
 
 					</li>
 				</ul>
@@ -58,7 +58,17 @@
 							class="menu-icon typcn typcn-document-text"></i> <span
 							class="menu-title">Stock Dinar</span>
 					</a></li>
-					<!-- <li class="nav-item"><a class="nav-link"
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/register/view}"> <i
+							class="menu-icon typcn typcn-document-text"></i> <span
+							class="menu-title">Registrasi</span>
+					</a></li>
+					<!--<li class="nav-item"><a class="nav-link"
+						th:href="@{/logout}"> <i
+							class="menu-icon typcn typcn-document-text"></i> <span
+							class="menu-title">Logout</span>
+					</a></li>
+					 <li class="nav-item"><a class="nav-link"
 						th:href="@{/jurusan/home}"> <i
 							class="menu-icon typcn typcn-document-text"></i> <span
 							class="menu-title">Jurusan</span>
